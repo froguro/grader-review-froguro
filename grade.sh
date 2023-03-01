@@ -9,7 +9,7 @@ if [[ -e ListExamples.java ]]
 then 
     echo 'ListExamples.java found'
 else 
-    echo 'ListExamples.java not found'
+    echo '------ListExamples.java not found------'
     exit
 fi
 
@@ -21,7 +21,7 @@ if [[ $? -eq 0 ]]
 then
     echo 'Javac success!'
 else
-    echo 'Javac failed.'
+    echo '------Javac failed.------'
     cat javac-errors.txt
     exit
 fi
@@ -30,7 +30,7 @@ if grep -q "static List<String> filter(List<String> list, StringChecker sc)" Lis
 then
     echo "Method filter found"
 else
-    echo "Method filter not found!"
+    echo "------Method filter not found!------"
     exit
 fi
 
@@ -38,15 +38,15 @@ if grep -q "static List<String> merge(List<String> list1, List<String> list2)" L
 then 
     echo "Method merge found"
 else
-    echo "Method merge not found"
+    echo "------Method merge not found------"
     exit
 fi
 
 java -cp $CPATH org.junit.runner.JUnitCore TestListExamples > tester-results.txt
 if grep -q "FAILURES!!!" tester-results.txt
 then
-    echo "You failed...."
+    echo "------You failed....------"
     cat tester-results.txt
 else 
-    echo "You pass!"
+    echo "------You pass!------"
 fi
