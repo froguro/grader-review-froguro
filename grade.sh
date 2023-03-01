@@ -4,8 +4,10 @@ rm -rf student-submission
 git clone $1 student-submission
 echo 'Finished cloning'
 
-cd student-submission
-if [[ -e ListExamples.java ]]
+find student-submission > file.txt
+x=`grep -r "ListExamples.java" file.txt`
+
+if [[ -n $x ]]
 then 
     echo 'ListExamples.java found'
 else 
@@ -13,8 +15,7 @@ else
     exit
 fi
 
-cp ../TestListExamples.java ./
-cp -r ../lib ./
+cp $x .
 
 javac -cp $CPATH *.java 2> javac-errors.txt
 if [[ $? -eq 0 ]]
