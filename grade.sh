@@ -26,6 +26,22 @@ else
     exit
 fi
 
+if grep -q "static List<String> filter(List<String> list, StringChecker sc)" ListExamples.java
+then
+    echo "Method filter found"
+else
+    echo "Method filter not found!"
+    exit
+fi
+
+if grep -q "static List<String> merge(List<String> list1, List<String> list2)" ListExamples.java
+then 
+    echo "Method merge found"
+else
+    echo "Method merge not found"
+    exit
+fi
+
 java -cp $CPATH org.junit.runner.JUnitCore TestListExamples > tester-results.txt
 if grep -q "FAILURES!!!" tester-results.txt
 then
